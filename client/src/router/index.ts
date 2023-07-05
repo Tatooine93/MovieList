@@ -12,6 +12,11 @@ const router = createRouter({
       alias: '/home'
     },
     {
+      path: '/:pathMatch(.*)*',
+      name: 'notFound',
+      component: () => import('../views/404View.vue')
+    },
+    {
       path: '/register',
       name: 'register',
       component: () => import('../views/auth/RegisterView.vue'),
@@ -27,6 +32,24 @@ const router = createRouter({
       path: '/user',
       name: 'user',
       component: () => import('../views/auth/UserView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/list',
+      name: 'list',
+      component: () => import('../views/ListView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/list/:listId',
+      name: 'movieList',
+      component: () => import('../views/MovieListView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/movie/:movieId',
+      name: 'movie',
+      component: () => import('../views/MovieView.vue'),
       meta: { requiresAuth: true }
     }
   ]

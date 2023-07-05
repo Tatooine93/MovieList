@@ -2,20 +2,15 @@ const mongoose = require("mongoose");
 
 const listSchema = new mongoose.Schema(
   {
-    listId: {
-      type: String,
-    },
-
     listName: {
       type: String,
+      required: true,
+      trim: true,
     },
 
     userId: {
       type: String,
-    },
-
-    moviesId: {
-      type: Array,
+      required: true,
     },
   },
 
@@ -24,6 +19,6 @@ const listSchema = new mongoose.Schema(
   }
 );
 
-const ListModel = mongoose.model("message", listSchema);
+const ListModel = mongoose.model("list", listSchema);
 
 module.exports = ListModel;

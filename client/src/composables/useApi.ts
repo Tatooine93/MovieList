@@ -2,6 +2,9 @@ import { axiosInstance, axiosPrivateInstance } from '../utils/axios'
 import { useAuthStore } from '../stores/auth'
 import { watchEffect } from 'vue'
 
+//////////////// A REVOIR ////////////////////
+////////////////////////////////////////////// pas certain de l efficacité étant donner qu'on n utilise pas d accessToken, avoir si on switch vers un système de refreshToken
+
 export function useApiPrivate() {
   const authStore = useAuthStore()
 

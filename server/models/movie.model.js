@@ -1,33 +1,40 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const movieSchema = new mongoose.Schema(
-    {
-        apiMovieId: {
-            type: String
-        },
+  {
+    movieName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
 
-        listId: {
-            type: String
-        },
-        
-/*         parameters: {
+    listId: {
+      type: String,
+      required: true,
+    },
+
+    apiMovieId: {
+      type: String,
+    },
+
+    /*         parameters: {
             need to be defined
         }, */
 
-        downloaded: {
-            type: Boolean
-        },
-
-        seen: {
-            type: Boolean
-        }
+    downloaded: {
+      type: Boolean,
     },
 
-    {
-        timestamps: true
-    }
+    seen: {
+      type: Boolean,
+    },
+  },
+
+  {
+    timestamps: true,
+  }
 );
 
-const MovieModel = mongoose.model('message', MovieSchema);
+const MovieModel = mongoose.model("movie", movieSchema);
 
 module.exports = MovieModel;

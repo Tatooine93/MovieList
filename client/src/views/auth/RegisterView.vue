@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="register">
     <div class="container">
       <div class="card card-body mt-4">
         <h6 class="card-title">Register</h6>
@@ -21,7 +21,10 @@
             <label for="password-confirm">Confirm Password</label>
             <input type="password-confirm" class="form-control" id="password-confirm" />
           </div>
-          <button type="submit" class="btn btn-success">Register</button>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end"><button type="submit"
+              class="btn btn-success mt-4">Register</button>
+          </div>
+
         </form>
       </div>
     </div>
@@ -45,7 +48,6 @@ const registerData = reactive<RegisterData>({
 const errorMessage = ref<string>('')
 
 async function submit() {
-  console.log(registerData)
   await authStore
     .register(registerData)
     .then((res) => {

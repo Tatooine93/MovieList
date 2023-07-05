@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
     username: {
       type: String,
       required: true,
-      minlemgth: 3,
+      minlength: 3,
       maxlength: 55,
       unique: true,
       trim: true,
@@ -30,10 +30,6 @@ const userSchema = new mongoose.Schema(
     },
 
     //refreshToken: String,
-
-    list: {
-      type: Array,
-    },
 
     /*     parameters:{
         need to be defined

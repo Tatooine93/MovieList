@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <router-link :to="{ name: 'home' }" class="navbar-brand">Home</router-link>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#appNavBar" aria-controls="appNavBar"
-      aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#appNavBar"
+      aria-controls="appNavBar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -12,14 +12,16 @@
           <router-link :to="{ name: 'home' }" class="nav-link" href="#">Home</router-link>
         </li>
       </ul> -->
-      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li v-if="isAuthenticated" class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             {{ user.username }}
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <router-link :to="{ name: 'user' }" class="dropdown-item" href="#">Profile</router-link>
+            <div class="dropdown-divider"></div>
+            <router-link :to="{ name: 'list' }" class="dropdown-item" href="#">List</router-link>
             <div class="dropdown-divider"></div>
             <button @click="logout" class="dropdown-item btn btn-danger">Logout</button>
           </div>

@@ -1,24 +1,23 @@
-// auth = user à changer !!!
-
 const router = require("express").Router();
 const authController = require("../controller/auth.controller");
 const userController = require("../controller/user.controller");
 
 // authentification
+
+// create user
 router.post("/register", authController.register);
 
 router.post("/login", authController.login);
 
 router.get("/logout", authController.logout);
 
-// refresh ??
-// router.post('/refresh', userController.refresh)
-
-// user display
+// get user
 router.get("/:id", userController.userInfo);
 
-//router.put('/:id', userController.updateUser);
+// update user
+router.put("/:id", userController.updateUser);
 
-//router.delete('/:id', userController.deleteUser);
+// delete user
+router.delete("/:id", userController.deleteUser);
 
 module.exports = router;

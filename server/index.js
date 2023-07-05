@@ -13,6 +13,8 @@ const corsOptions = require("./config/cors");
 const credentials = require("./middleware/credentials");
 const errorHandlerMiddleware = require("./middleware/error_handler");
 const userRoutes = require("./routes/user.routes");
+const listRoutes = require("./routes/list.routes");
+const movieRoutes = require("./routes/movie.routes");
 const { checkUser, requireAuth } = require("./middleware/auth.middleware");
 
 const app = express();
@@ -47,8 +49,8 @@ app.get("/jwtid", requireAuth, (req, res) => {
 
 //Routes
 app.use("/api/user", userRoutes);
-//app.use('/api/list', )
-//app.use('/api/movie', )
+app.use("/api/list", listRoutes);
+app.use("/api/movie", movieRoutes);
 
 app.all("*", (req, res) => {
   res.status(404);

@@ -15,7 +15,11 @@
                         <input v-model="loginData.password" type="password" class="form-control" id="password"
                             placeholder="Password" />
                     </div>
-                    <button type="submit" class="btn btn-success">Login</button>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end"><button type="submit"
+                            class="btn btn-success mt-4">Login</button>
+                    </div>
+
+
                 </form>
             </div>
         </div>
@@ -38,13 +42,13 @@ const loginData = reactive<LoginData>({
 const errorMessage = ref<string>('')
 
 async function submit() {
-    console.log("loginData from LoginView", loginData)
+    //console.log("loginData from LoginView", loginData)
     await authStore
         .login(loginData)
         .then((res) => {
-            console.log("response from Loginview", res);
+            //console.log("response from Loginview", res);
 
-            router.replace({ name: 'user' })
+            router.replace({ name: 'list' })
         })
         .catch((err) => {
             //errorMessage.value = err.message !!! err is undefined !!!!! POURQUOI ?
