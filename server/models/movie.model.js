@@ -14,7 +14,7 @@ const movieSchema = new mongoose.Schema(
     },
 
     apiMovieId: {
-      type: String,
+      type: Number,
     },
 
     /*         parameters: {

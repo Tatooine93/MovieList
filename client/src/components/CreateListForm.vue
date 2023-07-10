@@ -62,7 +62,6 @@ watch(() => props.validateForm, async () => {
     else {
         emit('closeModal', false)
     }
-
 })
 
 async function submit() {

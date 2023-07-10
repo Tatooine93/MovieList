@@ -22,8 +22,9 @@
             data-bs-target="#addMovie">
             &plus; Add Movie
         </button>
-        <a :href="generateURL(movie.id)" class="list-group-item list-group-item-action d-flex align-items-start"
-            aria-current="true" v-for="movie in filteredMovies" :key="movie.id">
+        <a :href="generateURL(movie.id, movie.apiMovieId)"
+            class="list-group-item list-group-item-action d-flex align-items-start" aria-current="true"
+            v-for="movie in filteredMovies" :key="movie.id">
             <div class="ms-2 me-auto">
                 <div class="">{{ movie.movieName }}</div>
             </div>
@@ -61,6 +62,7 @@ import Modal from '../components/Modal.vue'
 import UpdateListForm from '../components/UpdateListForm.vue';
 import CreateMovieForm from '../components/CreateMovieForm.vue';
 import { useRouter } from 'vue-router'
+import { useTMDBApi } from '../composables/useTMDBApi'
 
 const listStore = useListStore()
 const closeModalEvent = ref<boolean>(false)
@@ -70,6 +72,7 @@ const router = useRouter()
 const list = computed(() => {
     return listStore.list
 })
+
 const lists = ref(list)
 
 async function getList() {
@@ -98,11 +101,13 @@ const movie = computed(() => {
 const movies = ref(movie)
 
 const filteredMovies = computed(() => {
+
+
     return movies.value.filter((movie: Movie) => movie.listId.toString() === specificListId);
 });
 
 
-console.log("type of FilterdMovie from MovieListView", filteredMovies);
+//console.log("type of FilterdMovie from MovieListView", filteredMovies);
 
 function deleteList(id: string | undefined) {
     if (confirm("Do you really want to delete your profile?")) {
@@ -114,10 +119,9 @@ function deleteList(id: string | undefined) {
     }
 }
 
-const generateURL = (id: string) => {
+const generateURL = (id: string, apiId: number) => {
     return `/movie/${id}`;
 };
-
 </script>
 
 <style scoped>

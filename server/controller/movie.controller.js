@@ -6,10 +6,10 @@ module.exports.createMovie = async (req, res) => {
     return res.status(400).send("listID unknown: " + req.body.listId);
   }
 
-  const { movieName, listId } = req.body;
+  const { movieName, listId, apiMovieId } = req.body;
 
   try {
-    const movie = await MovieModel.create({ movieName, listId });
+    const movie = await MovieModel.create({ movieName, listId, apiMovieId });
     res.status(201).json({ movieId: movie._id });
   } catch (err) {
     //const errors = registerErrors(err); need to handle error for List
@@ -74,6 +74,7 @@ module.exports.updateMovie = async (req, res) => {
     {
       $set: {
         movieName: req.body.movieName,
+        apiMovieId: req.body.apiMovieId,
       },
     },
     { new: true, setDefaultsOnInsert: true, runValidators: true } // no upsert !

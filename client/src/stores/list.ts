@@ -13,6 +13,7 @@ export interface CreateListData {
 export interface CreateMovieData {
   movieName: string
   listId: string
+  apiMovieId: number | null
 }
 
 export interface UpdateListData {
@@ -21,6 +22,7 @@ export interface UpdateListData {
 
 export interface UpdateMovieData {
   movieName: string
+  apiMovieId: number | null
 }
 
 export interface Movie {
@@ -99,9 +101,9 @@ export const useListStore = defineStore('list', {
             id: el._id,
             movieName: el.movieName,
             listId: el.listId,
-            apiMovieId: 123456,
-            downloaded: false,
-            seen: false
+            apiMovieId: el.apiMovieId,
+            downloaded: el.downloaded,
+            seen: el.seen
           })
         })
         //console.log('this.movie from getMovie', this.movie)
