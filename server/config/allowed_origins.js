@@ -4,6 +4,7 @@ const origins = [
   "http://localhost:3000",
   "http://localhost:8080",
   "http://127.0.0.1:5173",
+  "https://movielist-a8pc.onrender.com",
 ];
 
 module.exports = origins;
