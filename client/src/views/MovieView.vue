@@ -11,8 +11,9 @@
                 <h6 class="card-subtitle mb-2 text-muted">ID: {{ currentMovie?.id }}</h6>
                 <h6 class="card-subtitle mb-2 text-muted">ListID: {{ currentMovie?.listId }}</h6>
                 <h5 class="card-title">{{ tmdbMovieInfo?.original_title }}</h5> -->
+
                 <div v-if="tmdbMovieInfo.id" class="card mb-3" data-bs-toggle="list" style="max-width: 540px;">
-                    <div class="row g-0">
+                    <div class="row g-0 mb-4">
                         <div class="col-md-4">
                             <img :src="`https://image.tmdb.org/t/p/original/${tmdbMovieInfo?.poster_path}`"
                                 class="img-fluid rounded-start" loading="lazy" alt="movie poster is missing">
@@ -27,6 +28,11 @@
                             </div>
                         </div>
                     </div>
+
+                    <vue-plyr>
+                        <div data-plyr-provider="youtube" :data-plyr-embed-id="movieTrailer">
+                        </div>
+                    </vue-plyr>
                 </div>
                 <div v-else>
                     Sorry for the inconvenience, but we can't retrieve the movie's informations
@@ -55,9 +61,7 @@
                         </template>
                     </Modal>
                 </div>
-
             </div>
-
         </div>
     </div>
 </template>
@@ -100,6 +104,14 @@ async function getSpecificMovieId() {
     movies.value = listStore.movie
 } */
 
+const movieTrailer = computed(() => {
+    const trailer = tmdbMovieInfo?.value?.videos?.results?.filter((result: any) => result.site === "YouTube" && result.type === "Trailer")[0].key as any
+    console.log("tmdb state", tmdbMovieInfo.value);
+
+    console.log("movie trailer", trailer);
+    return trailer
+})
+
 const currentMovie = computed(() => {
     const movie = listStore.movie.find((movie: Movie) => movie.id === specificMovieId.value) as Movie
     if (movie !== undefined) {
@@ -120,6 +132,8 @@ async function getMovieApiInfo(movieId: number) {
             console.log(err.message)
         })
 }
+
+
 
 onMounted(async () => {
     await getList()
