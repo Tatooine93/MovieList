@@ -6,17 +6,33 @@
           <p v-if="errorMessage" class="error-message text-danger mb-4">{{ errorMessage }}</p>
           <div class="form-group">
             <label for="username">Username</label>
-            <input v-model="updateData.username" type="text" class="form-control" id="username"
-              :placeholder="user.username" />
+            <input
+              v-model="updateData.username"
+              type="text"
+              class="form-control"
+              id="username"
+              :placeholder="user.username"
+            />
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
-            <input v-model="updateData.email" type="email" class="form-control" id="email" :placeholder="user.email" />
+            <input
+              v-model="updateData.email"
+              type="email"
+              class="form-control"
+              id="email"
+              :placeholder="user.email"
+            />
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input v-model="updateData.password" type="password" class="form-control" id="password"
-              placeholder="New password" />
+            <input
+              v-model="updateData.password"
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="New password"
+            />
           </div>
           <div class="form-group">
             <label for="password-confirm">Confirm Password</label>
@@ -29,7 +45,6 @@
 </template>
 
 <script setup lang="ts">
-
 import { type UpdateData, useAuthStore } from '../stores/auth'
 import { reactive, ref, computed, watch, onMounted } from 'vue'
 //import { useRouter } from 'vue-router'
@@ -66,18 +81,19 @@ const updateData = reactive<UpdateData>({
 
 const errorMessage = ref<string>('')
 
-watch(() => props.validateForm, async () => {
-  if (props.validateForm && props.modalIsVisible) {
-    await submit()
+watch(
+  () => props.validateForm,
+  async () => {
+    if (props.validateForm && props.modalIsVisible) {
+      await submit()
+    } else {
+      emit('closeModal', false)
+    }
   }
-  else {
-    emit('closeModal', false)
-  }
-
-})
+)
 
 async function submit() {
-  console.log("SUBMIT is trigger from UpdateForm")
+  console.log('SUBMIT is trigger from UpdateForm')
   await authStore
     .update(updateData)
     .then((res) => {
@@ -91,6 +107,4 @@ async function submit() {
       console.log(err.message)
     })
 }
-
-
 </script>

@@ -15,16 +15,20 @@
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input v-model="registerData.password" type="password" class="form-control" id="password" />
+            <input
+              v-model="registerData.password"
+              type="password"
+              class="form-control"
+              id="password"
+            />
           </div>
           <div class="form-group">
             <label for="password-confirm">Confirm Password</label>
             <input type="password-confirm" class="form-control" id="password-confirm" />
           </div>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end"><button type="submit"
-              class="btn btn-success mt-4">Register</button>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-success mt-4">Register</button>
           </div>
-
         </form>
       </div>
     </div>
